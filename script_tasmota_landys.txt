@@ -1,0 +1,44 @@
+>D
+
+>B
+=>sensor53 r
+
+>M 1
+; pedido modbus
++1,3,mN2,1,9600,LANDYS,1,30,0104006C,r010400790007,r010400260007,0104000B,r010400160006
+;descodificações
+
+ledpower 0
+
+
+; Pedido 0
+1,=hVALORES INSTANTANEOS <hr>
+1,010404UUuuxxxx@i0:10,Tensão,V,Voltage_L1,16 
+1,010404xxxxUUuu@i0:10,Corrente,A,Current_L1,17
+1,=h<br>
+
+; Pedido 1
+1,010412UUuuUUuuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@i1:1,Potência,W,Power_L1,16
+1,010412xxxxxxxxxxxxxxxxUUuuxxxxxxxxxxxxxxxxxxxx@i1:1000,Fator Potência,pu,PFactor_L1,19
+1,010412xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxUUuuxxxx@i1:10,Frequência,Hz,Frequency,17
+
+; Pedido 2
+1,=h<br>TOTALIZADORES ENERGIA <hr>
+1,01041cUUuuUUuuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@i2:1000,Vazio(1),kWh,Energy_T1,17
+1,01041cxxxxxxxxUUuuUUuuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@i2:1000,Ponta(2),kWh,Energy_T2,17
+1,01041cxxxxxxxxxxxxxxxxUUuuUUuuxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx@i2:1000,Cheia(3),kWh,Energy_T3,17
+1,01041cxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxUUuuUUuu@i2:1000,TOTAL(1+2+3),kWh,Energy_TOT,16
+
+; Pedido 3
+1,=h<br>ESTADOS<hr>
+1,010406uuxxxxxxxx@i3:1,Tarifa Actual,,Tarifa,16
+
+ledpower 1
+
+
+; Pedido 4  Saber quantidade de KWh injetados da Rede Elétrica
+1,=h<br>INJETADA<hr>
+1,010418xxxxxxxxUUuuUUuu@i4:1000,Total Energy Export ,kWh,TotEneExp,17
+
+; Com base do script do Nikito e  atualizado por Francisco  https://www.youtube.com/c/LearnAndSharePT
+#
